@@ -1,0 +1,104 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "This project CMake Configure",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"-S", ".",
+				"-B", "Debug",
+				"-G", "Ninja",
+				"-DCMAKE_BUILD_TYPE=Debug"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "This project clean Build",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"if (Test-Path Debug) { ninja -C Debug -t clean }; if (Test-Path Release) { ninja -C Release -t clean }; Write-Host 'Clean completed!'"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "This project Build (Debug -Os -g2)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"cmake -S . -B Debug -G Ninja -DCMAKE_BUILD_TYPE=Debug; ninja -C Debug"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": [
+				{
+					"owner": "gcc",
+					"fileLocation": "absolute",
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				}
+			]
+		},
+		{
+			"label": "This project Build (Release -O2 -g0)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"cmake -S . -B Release -G Ninja -DCMAKE_BUILD_TYPE=Release; ninja -C Release"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": [
+				{
+					"owner": "gcc",
+					"fileLocation": "absolute",
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				}
+			]
+		}
+	]
+}

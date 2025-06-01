@@ -1,0 +1,39 @@
+
+# Build directories
+build/
+Debug/
+!Debug/*.map
+!Debug/*.hex
+Release/
+!Release/*.map
+!Release/*.hex
+.cache/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+
+# Ninja build files
+build.ninja
+.ninja_deps
+.ninja_log
+
+# Object files
+*.o
+*.obj
+*.d
+
+# Executables and binaries
+*.elf
+*.bin
+*.list
+
+# VS Code settings (keep tasks.json and c_cpp_properties.json)
+.vscode/settings.json
+.vscode/launch.json
+
+# Temporary files
+*.tmp
+*.log
